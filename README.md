@@ -69,11 +69,11 @@ To use Ralph's "God Mode" tools globally across your IDE, add the following serv
 
 ```json
 "ralph-god-mode": {
-  "command": "/Users/brixelectronics/Documents/mac/loop/venv/bin/python",
+  "command": "/Users/x/Documents/mac/loop/venv/bin/python",
   "args": [
-    "/Users/brixelectronics/Documents/mac/loop/god_mode_tools.py"
+    "/Users/x/Documents/mac/loop/god_mode_tools.py"
   ],
-  "cwd": "/Users/brixelectronics/Documents/mac/loop",
+  "cwd": "/Users/x/Documents/mac/loop",
   "env": {
     "GEMINI_API_KEY": "YOUR_API_KEY_HERE"
   }
