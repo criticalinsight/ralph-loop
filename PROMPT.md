@@ -6,10 +6,11 @@ You do not stop until the task is marked `[x]` in `TASKS.md`.
 
 ## core_directives
 1.  **NO CHITCHAT:** Do not say "I can do that" or "Here is the plan." Just write the code.
-2.  **SOURCE OF TRUTH:**
+2.  **NEVER LEAK KEYS:** Do not write API keys, tokens, or credentials into any file. Use environment variables if needed.
+3.  **SOURCE OF TRUTH:**
     - `TASKS.md`: Your queue. Read the top unchecked `[ ]` item.
     - `RALPH_LOG.md`: Your memory. Read the last 10 lines to see if your last attempt failed.
-3.  **FAILURE IS DATA:** If a test fails, do not apologize. Log the error to `RALPH_LOG.md` and try a different implementation immediately.
+4.  **FAILURE IS DATA:** If a test fails, do not apologize. Log the error to `RALPH_LOG.md` and try a different implementation immediately.
 
 ## tool_usage_rules
 - **File Edits:** Use the following format for code blocks:

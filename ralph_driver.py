@@ -49,9 +49,39 @@ def call_llm(model, context_file):
     return result
 
 def is_rate_limited(result):
-    # Check for 429 or rate limit strings in output
     error_msg = result.stderr.lower()
     return "429" in error_msg or "rate limit" in error_msg
+
+def git_sync():
+    """Safety check and push to GitHub"""
+    print("Starting GitHub sync...")
+    
+    # 1. Check for API keys in staged changes
+    # Added files and modifications
+    staged_diff = subprocess.run("git diff --cached", shell=True, capture_output=True, text=True).stdout
+    key_pattern = r"AIzaSy[A-Za-z0-9-_]{33}"
+    
+    if re.search(key_pattern, staged_diff):
+        print("CRITICAL: Detected potential API key in staged changes! Aborting push.")
+        return False
+
+    # 2. Add, commit, and push
+    subprocess.run("git add .", shell=True)
+    
+    # Check if there are changes to commit
+    status = subprocess.run("git status --porcelain", shell=True, capture_output=True, text=True).stdout
+    if status:
+        print("Committing changes...")
+        subprocess.run('git commit -m "Ralph: Autonomous update and documentation"', shell=True)
+        print("Pushing to GitHub...")
+        push_result = subprocess.run("git push origin main", shell=True, capture_output=True, text=True)
+        if push_result.returncode == 0:
+            print("Successfully pushed to GitHub.")
+        else:
+            print(f"Error pushing to GitHub: {push_result.stderr}")
+    else:
+        print("No changes to sync.")
+    return True
 
 def main():
     if not os.path.exists("context.txt"):
@@ -72,7 +102,7 @@ def main():
         if is_rate_limited(result):
             print(f"CRITICAL: Both models rate limited. Sleeping for 1 hour...")
             time.sleep(3600)
-            return # Exit loop iteration to retry later
+            return
 
     if result.returncode != 0:
         print(f"Error calling LLM: {result.stderr}")
@@ -86,17 +116,12 @@ def main():
     # 3. Extract and execute actions
     actions = extract_code_blocks(response)
     
-    if not actions:
-        print("No executable actions found in response.")
-        # We still want to check for completion strings even without code blocks
-    
     for path, content in actions:
         if path == "SHELL":
             print(f"Running shell command...")
             run_command(content)
         else:
             print(f"Writing file: {path}")
-            # Ensure directory exists
             os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
             with open(path, "w") as f:
                 f.write(content)
@@ -107,16 +132,16 @@ def main():
         try:
             with open("TASKS.md", "r") as f:
                 content = f.read()
-            
-            # Find the first [ ] and change to [x]
             new_content = re.sub(r"\[ \]", "[x]", content, count=1)
-            
             if new_content != content:
                 with open("TASKS.md", "w") as f:
                     f.write(new_content)
                 print("Successfully checked off task in TASKS.md")
         except Exception as e:
             print(f"Error updating TASKS.md: {e}")
+
+    # 5. ALWAYS SYNC TO GITHUB
+    git_sync()
 
 if __name__ == "__main__":
     main()
