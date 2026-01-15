@@ -1,0 +1,2 @@
+# Ralph God Mode Tools - Python Dependencies
+fastmcp>=2.0.0
