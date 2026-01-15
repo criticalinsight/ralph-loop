@@ -63,6 +63,28 @@ export GEMINI_API_KEY="AIzaSy..."
 ./ralph.sh
 ```
 
+## Global MCP Integration (Antigravity IDE)
+
+To use Ralph's "God Mode" tools globally across your IDE, add the following server definition to your `mcp_config.json` (typically at `~/.antigravity/mcp_config.json` or within your Claude Desktop config):
+
+```json
+"ralph-god-mode": {
+  "command": "/Users/brixelectronics/Documents/mac/loop/venv/bin/python",
+  "args": [
+    "/Users/brixelectronics/Documents/mac/loop/god_mode_tools.py"
+  ],
+  "cwd": "/Users/brixelectronics/Documents/mac/loop",
+  "env": {
+    "GEMINI_API_KEY": "YOUR_API_KEY_HERE"
+  }
+}
+```
+
+### Installation Steps:
+1. Ensure the Python `venv` in this project is initialized and has `fastmcp` installed.
+2. Update the `command` and `args` paths in the JSON above to match your absolute local paths.
+3. Restart your Antigravity MCP client to activate the tools.
+
 ## Features for High-Power Coders
 
 - **Model Hierarchy:** Prioritizes `gemini-3-pro-preview` for complex logic, falling back to `gemini-3-flash-preview` for speed.
