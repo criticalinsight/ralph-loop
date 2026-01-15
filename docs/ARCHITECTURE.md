@@ -26,3 +26,12 @@ This project is an autonomous agent implementation using a lightweight FastAPI b
 3. **Response**: JSON payload returned to client.
 
 ## Directory Structure
+Refer to `README.md` for the current visual representation of the project hierarchy.
+
+## Workspace Isolation
+
+Ralph is designed for **Self-Contained Autonomy**:
+- Every project workspace maintains its own `context.txt`, `ralph_driver.py`, and `TASKS.md`.
+- No cross-workspace context leakage occurs; the agent focuses entirely on the local codebase.
+- Autonomous GitHub synchronization is scoped to the local repository's `origin`.
+- DNA Replication: The prompt in `GEMINI.md` allows any new workspace to instantiate its own independent Ralph loop.
