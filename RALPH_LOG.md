@@ -1,1 +1,3 @@
-[SUCCESS] Generated docs/API_REFERENCE.md based on standard FastAPI structure.
+- **Action:** Created `docs/TROUBLESHOOTING.md`.
+- **Status:** Success.
+- **Next:** Create `docs/CONTRIBUTING.md`.

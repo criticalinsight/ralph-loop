@@ -16,7 +16,7 @@ Add your tasks below. Ralph will process them top-to-bottom.
 [x] Create documentation: `docs/ARCHITECTURE.md`
 [x] Create documentation: `docs/API_REFERENCE.md`
 [x] Create documentation: `docs/DEPENDENCIES.md`
-[ ] Create documentation: `docs/TROUBLESHOOTING.md`
-[ ] Create documentation: `docs/CONTRIBUTING.md`
+[x] Create documentation: `docs/TROUBLESHOOTING.md`
+[x] Create documentation: `docs/CONTRIBUTING.md`
 [ ] Create documentation: `docs/DEPLOYMENT.md`
 [ ] Create documentation: `docs/ROADMAP.md`
