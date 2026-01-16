@@ -46,6 +46,20 @@ Ralph is specifically designed to supercharge the workflow of professional coder
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
+### Dual-Memory Architecture (Hybrid-Memory Mode)
+
+Ralph supports a "Dual-Memory" architecture combining:
+
+| Memory Layer | Tool | Purpose |
+|--------------|------|---------|
+| **Mem0** (Episodic) | `search_memories`, `add_memory` | Short-term recall: "What did I try last loop?" |
+| **Graphiti** (Semantic) | `search_facts`, `add_episode` | Knowledge graph: "What depends on this file?" |
+
+**Memory Protocol:**
+1. **SEARCH** (Recall Phase): Query `search_memories` for history, `search_facts` for structure
+2. **LOG** (Episodic Phase): After each loop, `add_memory` with outcome summary
+3. **LEARN** (Semantic Phase): When learning new facts, `add_episode` with descriptive sentences
+
 ## Quick Start (The Antigravity Way)
 
 ### 1. Initialize DNA

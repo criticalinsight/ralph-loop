@@ -8,6 +8,8 @@ This document describes the project's dependencies and their purposes.
 |---------|---------|---------|
 | `fastapi` | latest | Modern web framework for building APIs |
 | `uvicorn` | latest | ASGI server for running FastAPI |
+| `fastmcp` | >=2.0.0 | MCP server framework for God Mode tools |
+| `chromadb` | >=0.3.23 | Vector database for Mem0 memory layer |
 
 ## Development Dependencies
 
