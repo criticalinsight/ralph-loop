@@ -1,2 +1,3 @@
 # Ralph God Mode Tools - Python Dependencies
 fastmcp>=2.0.0
+chromadb>=0.3.23
