@@ -6,4 +6,8 @@ client = TestClient(app)
 def test_info_endpoint():
     response = client.get("/info")
     assert response.status_code == 200
-    assert response.json() == {"app_name": "Ralph API", "version": "1.0.0"}
+    data = response.json()
+    assert data["app_name"] == "Ralph API"
+    assert data["version"] == "1.0.0"
+    assert data["status"] == "operational"
+    assert data["agent"] == "Ralph"

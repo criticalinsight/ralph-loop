@@ -4,4 +4,9 @@ app = FastAPI()
 
 @app.get("/info")
 async def info():
-    return {"status": "operational", "agent": "Ralph"}
+    return {
+        "app_name": "Ralph API",
+        "version": "1.0.0",
+        "status": "operational",
+        "agent": "Ralph"
+    }
